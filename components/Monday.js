@@ -2,12 +2,27 @@ import React,{useState} from 'react'
 import UserRow from './UserRow'
 import {useRecoilValue,useRecoilState} from "recoil"
 
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function Monday({ data }) {
     //const Users = useRecoilValue(usersState);
     //const users = Users.json()
     const[show,setShow]= useState(false)
     return (
         <div className='bg-gray-100 shadow-md rounded-md pb-4'>
+            <ToastContainer
+            position="top-left"
+            autoClose={1000}
+            hideProgressBar
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover={false}
+            />
             <div className='text-center font-bold text-2xl'>Monday</div>
             {show==false
                 ?

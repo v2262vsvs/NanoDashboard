@@ -72,18 +72,8 @@ function UserRow({ id,day, username, email, morningminutes, morninghours, evenin
     }
 
     return (
-        <div className='bg-gray-50 rounded-2xl shadow-lg outline-none m-2 p-2'>
-           <ToastContainer
-            position="top-left"
-            autoClose={1000}
-            hideProgressBar
-            newestOnTop
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover={false}
-            />
+        <>
+           
 
             {User ?
                 (
@@ -93,6 +83,7 @@ function UserRow({ id,day, username, email, morningminutes, morninghours, evenin
                 )
                 : (
                     <>
+                        <div className='bg-gray-50 rounded-2xl shadow-lg outline-none m-2 p-2'>
                         <div className='flex p-1'>
                             <div className='bg-gray-200 rounded-md '>User id: </div>
                             <div>{id}</div>
@@ -134,11 +125,11 @@ function UserRow({ id,day, username, email, morningminutes, morninghours, evenin
                         </div>
                         <button onClick={(e) => deleteUser(e)} className='bg-red-400 rounded-md p-1 outline-none hover:scale-105'>delete</button>
                         <button type="submit" onClick={(e)=>update(e)} className='ml-1 place-self-center bg-yellow-300 rounded-md p-1 hover:scale-105 hover:bg-yellow-400'>update</button>
-
+                        </div >
                     </>
                 )}
 
-        </div >
+        </>
     )
 }
 
