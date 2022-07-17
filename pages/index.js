@@ -31,7 +31,7 @@ export default function Home({ data,data2,data3,data4,data5,alldata }) {
         <div className='font-bold'>Notes</div>
         <div> Morning session ID: 6200d57014d1b95a4c82dc68</div>
         <div> Evening session ID: 61b65debfe32175adb317233</div>
-        <div>Format time data = > 17:00 = > Evening hours = 17, Evening minutes = 0 (NOT 00)</div>
+        <div>Format time data =  17:00 =  Evening hours = 17, Evening minutes = 0 (NOT 00)</div>
 
       </div>
       {/*  Banner */}
