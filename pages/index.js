@@ -13,10 +13,10 @@ import datamicrosoft from "../usersData/Microsoft"
 import datapandatron from "../usersData/Pandatron"
 
 
-export default function Home({ data,data2,data3,data4,data5,alldata }) {
-  const dataShared = datashared
-  const dataMicrosoft = datamicrosoft
-  const dataPandatron = datapandatron
+export default function Home({ data,data2,data3,data4,data5,alldata,dataShared,dataPandatron,dataMicrosoft}) {
+  //const dataShared = datashared
+  //const dataMicrosoft = datamicrosoft
+  //const dataPandatron = datapandatron
 
   return (
     <div >
@@ -32,6 +32,7 @@ export default function Home({ data,data2,data3,data4,data5,alldata }) {
         <div> Morning session ID: 6200d57014d1b95a4c82dc68</div>
         <div> Evening session ID: 61b65debfe32175adb317233</div>
         <div>Format time data =  17:00 =  Evening hours = 17, Evening minutes = 0 (NOT 00)</div>
+        <div>Team_id: FILL IN if it is Shared Brainly user</div>
 
       </div>
       {/*  Banner */}
@@ -121,52 +122,55 @@ export async function getServerSideProps(context) {
       notFound: true,
     }
   }
-  const allusers = await fetch('https://61vqrvqwn3.execute-api.us-east-1.amazonaws.com/staging2?day=AllUsers', {
+  const response = await fetch('https://www.fibofy.com/panda-sharedchannels/fetch-channel-users?channel=shared-brainly-2&bypass=cc4d9d62ad12bb29cce8663cffdaf6e9026961cc81b8dfcf10d4683087403180', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
-
   })
-  const alldata = await allusers.json()
-  if (!data) {
+  const dataShared = await response.json()
+  if (!dataShared) {
     return {
       notFound: true,
     }
   }
-  const auth = await fetch("https://www.fibofy.com/signin/save", {
-    "headers": {
-      "authorization": "8a4bfadf32bfb287126fd9ef9ebac259ca32f132bd5cb4f8391edf9a69a06758",
-      "accept": "application/json, text/javascript, */*; q=0.01",
-      "accept-language": "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7,uk;q=0.6",
-      "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
-      "sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"102\", \"Google Chrome\";v=\"102\"",
-      "sec-ch-ua-mobile": "?0",
-      "sec-ch-ua-platform": "\"macOS\"",
-      "sec-fetch-dest": "empty",
-      "sec-fetch-mode": "cors",
-      "sec-fetch-site": "same-origin",
-      "x-requested-with": "XMLHttpRequest"
+  const response2 = await fetch('https://www.fibofy.com/panda-sharedchannels/fetch-channel-users?channel=pandacoachbot&bypass=cc4d9d62ad12bb29cce8663cffdaf6e9026961cc81b8dfcf10d4683087403180', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
     },
-    "referrer": "https://www.fibofy.com/signin/?redir=/panda/admin/",
-    "referrerPolicy": "strict-origin-when-cross-origin",
-    "body": "username=demo%40fibo.io&password=06b46fd2f43962207e999e889ee6e92ea947cecc5b250831ed1e0c48ffb21c17&password2=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "method": "POST",
-    "mode": "cors",
-    "credentials": "include"
-  });
-  console.log("status req auth", auth.ok)
+  })
+  const dataPandatron = await response2.json()
+  if (!dataPandatron) {
+    return {
+      notFound: true,
+    }
+  }
+  const response3 = await fetch('  https://www.fibofy.com/msteams-fibo/fetch-channel-users?bypass=cc4d9d62ad12bb29cce8663cffdaf6e9026961cc81b8dfcf10d4683087403180', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+  const dataMicrosoft = await response3.json()
+  if (!dataMicrosoft) {
+    return {
+      notFound: true,
+    }
+  }
 
-  
  
 
 
   
   return {
     props: {
-      data,data2,data3,data4,data5,alldata
+      data,data2,data3,data4,data5,dataShared,dataPandatron,dataMicrosoft
     }, // will be passed to the page component as props
   }
 }
+
+
+
 
 

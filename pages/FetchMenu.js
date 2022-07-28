@@ -1,12 +1,19 @@
+
+
 import React,{useState} from 'react'
 import { fetchBrainly } from '../lib/requests'
 import BrainlyList from '../components/BrainlyList'
 import MicrosoftList from '../components/MicrosoftList'
 import PandatronList from '../components/PandatronList'
-function FetchMenu({dataMicrosoft,dataShared,dataPandatron}) {
+function FetchMenu({dataMicrosoft,dataPandatron,dataShared}) {
     const[show,setShow]= useState(false)
     const[show2,setShow2]= useState(false)
     const[show3,setShow3]= useState(false)
+    const clickBrainly = async(e) => {
+        e.preventDefault()
+        setShow(true)
+        dataShared = await fetchBrainly()    
+    }
     const getDataFetch = (e) => {
       e.preventDefault()
       const data = null;
@@ -67,7 +74,7 @@ function FetchMenu({dataMicrosoft,dataShared,dataPandatron}) {
                     </svg>
                 </button>
                 <div className='space-y-2 '>{dataMicrosoft.data.map(user =>
-                (<>
+                (
                     <div key={user.id}>
                         <MicrosoftList
                             id={user.conv_id}
@@ -75,7 +82,7 @@ function FetchMenu({dataMicrosoft,dataShared,dataPandatron}) {
                             real_name={user.user.name}                  
                         />
                     </div>
-                </>
+                
                 ))}</div>
                 </>
             }
@@ -96,7 +103,7 @@ function FetchMenu({dataMicrosoft,dataShared,dataPandatron}) {
                     </svg>
                 </button>
                 <div className='space-y-2 '>{dataPandatron.data.map(user =>
-                (<>
+                (
                     <div key={user.id}>
                         <PandatronList
                             id={user.id}
@@ -106,7 +113,7 @@ function FetchMenu({dataMicrosoft,dataShared,dataPandatron}) {
                             tz={user.tz}                        
                         />
                     </div>
-                </>
+                
                 ))}</div>
                 </>
             }
@@ -119,3 +126,5 @@ function FetchMenu({dataMicrosoft,dataShared,dataPandatron}) {
 
 export default FetchMenu
 
+
+  

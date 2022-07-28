@@ -69,3 +69,4 @@ function Monday({ data }) {
 }
 
 export default Monday
+
