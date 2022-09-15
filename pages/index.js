@@ -13,7 +13,7 @@ import datamicrosoft from "../usersData/Microsoft"
 import datapandatron from "../usersData/Pandatron"
 
 
-export default function Home({ data,data2,data3,data4,data5,alldata,dataShared,dataPandatron,dataMicrosoft}) {
+export default function Home({ data,data2,data3,data4,data5,alldata,dataShared,dataPandatron,dataMicrosoft,dataCulturedBrain}) {
   //const dataShared = datashared
   //const dataMicrosoft = datamicrosoft
   //const dataPandatron = datapandatron
@@ -32,7 +32,7 @@ export default function Home({ data,data2,data3,data4,data5,alldata,dataShared,d
         <div> Morning session ID: 6200d57014d1b95a4c82dc68</div>
         <div> Evening session ID: 61b65debfe32175adb317233</div>
         <div>Format time data =  17:00 =  Evening hours = 17, Evening minutes = 0 (NOT 00)</div>
-        <div>Team_id: FILL IN if it is Shared Brainly user</div>
+        <div > Team_id: FILL IN if it is <span className='font-bold text-xl'>Shared Brainly user or Cultured Brainly</span></div>
 
       </div>
       {/*  Banner */}
@@ -49,7 +49,7 @@ export default function Home({ data,data2,data3,data4,data5,alldata,dataShared,d
       </div>
               */}
 
-      <FetchMenu dataMicrosoft={dataMicrosoft} dataShared={dataShared} dataPandatron={dataPandatron}/>
+      <FetchMenu dataMicrosoft={dataMicrosoft} dataShared={dataShared} dataPandatron={dataPandatron} dataCulturedBrain={dataCulturedBrain}/>
       </div>
 
       
@@ -158,6 +158,18 @@ export async function getServerSideProps(context) {
       notFound: true,
     }
   }
+  const response4 = await fetch('https://www.fibofy.com/panda-sharedchannels/fetch-channel-users?channel=culturedbrain&bypass=cc4d9d62ad12bb29cce8663cffdaf6e9026961cc81b8dfcf10d4683087403180', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+  const dataCulturedBrain = await response4.json()
+  if (!dataMicrosoft) {
+    return {
+      notFound: true,
+    }
+  }
 
  
 
@@ -165,7 +177,7 @@ export async function getServerSideProps(context) {
   
   return {
     props: {
-      data,data2,data3,data4,data5,dataShared,dataPandatron,dataMicrosoft
+      data,data2,data3,data4,data5,dataShared,dataPandatron,dataMicrosoft,dataCulturedBrain
     }, // will be passed to the page component as props
   }
 }
