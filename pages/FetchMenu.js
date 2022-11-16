@@ -6,7 +6,7 @@ import BrainlyList from '../components/BrainlyList'
 import MicrosoftList from '../components/MicrosoftList'
 import PandatronList from '../components/PandatronList'
 import CulturedBrainList from '../components/CulturedBrainList'
-function FetchMenu({dataMicrosoft,dataPandatron,dataShared,dataCulturedBrain}) {
+function FetchMenu({dataMicrosoft,dataPandatron,dataCulturedBrain}) {
     const[show,setShow]= useState(false)
     const[show2,setShow2]= useState(false)
     const[show3,setShow3]= useState(false)
@@ -28,7 +28,7 @@ function FetchMenu({dataMicrosoft,dataPandatron,dataShared,dataCulturedBrain}) {
 
   return (
     <div className='space-y-3 ml-3'>
-        {show==false
+       {/*  {show==false
                 ?
                 <button onClick={()=>setShow(true)} className=' cursor-pointer flex place-self-center bg-gray-300 rounded-md px-2 py-1 hover:scale-105 hover:bg-gray-400 '>
                     <div>Show All Brainly users data</div>
@@ -59,6 +59,7 @@ function FetchMenu({dataMicrosoft,dataPandatron,dataShared,dataCulturedBrain}) {
                 ))}</div>
                 </>
             }
+             */}
 
             {show2==false
                 ?

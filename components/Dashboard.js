@@ -35,16 +35,23 @@ function Dashboard() {
     const eveningsessionRef = useRef('');
     const team_idRef = useRef('');
 
-    const submit =  e => {
+    const submit =  async (e) => {
         e.preventDefault();
         idRef.current.value
         if (Day === 'Weekdays'){
-            addUserWeekDays(e,idRef.current.value, Day, nameRef.current.value,emailRef.current.value,Worksapce,morninghoursRef.current.value,morningminutesRef.current.value,eveninghoursRef.current.value,eveningminutesRef.current.value,morningsessionRef.current.value,eveningsessionRef.current.value,team_idRef.current.value)
-            notifySuccess();
+            const res = await addUserWeekDays(e,idRef.current.value, Day, nameRef.current.value,emailRef.current.value,Worksapce,morninghoursRef.current.value,morningminutesRef.current.value,eveninghoursRef.current.value,eveningminutesRef.current.value,morningsessionRef.current.value,eveningsessionRef.current.value,team_idRef.current.value)
+            if (res == null) {
+                notifySuccess()
+            } else {
+                toast.error(`${res.error}`)
+            }
         }else{
-            const res =  addUser(e,idRef.current.value, Day, nameRef.current.value,emailRef.current.value,Worksapce,morninghoursRef.current.value,morningminutesRef.current.value,eveninghoursRef.current.value,eveningminutesRef.current.value,morningsessionRef.current.value,eveningsessionRef.current.value,team_idRef.current.value)
-            //if (res.ok){ notifySuccess();}
-            notifySuccess()
+            const res =  await addUser(e,idRef.current.value, Day, nameRef.current.value,emailRef.current.value,Worksapce,morninghoursRef.current.value,morningminutesRef.current.value,eveninghoursRef.current.value,eveningminutesRef.current.value,morningsessionRef.current.value,eveningsessionRef.current.value,team_idRef.current.value)
+            if (res == null) {
+                notifySuccess()
+            } else {
+                toast.error(`${res.error}`)
+            }
         }
         
     }

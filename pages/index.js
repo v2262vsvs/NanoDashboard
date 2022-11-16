@@ -49,7 +49,7 @@ export default function Home({ data,data2,data3,data4,data5,alldata,dataShared,d
       </div>
               */}
 
-      <FetchMenu dataMicrosoft={dataMicrosoft} dataShared={dataShared} dataPandatron={dataPandatron} dataCulturedBrain={dataCulturedBrain}/>
+      <FetchMenu dataMicrosoft={dataMicrosoft}  dataPandatron={dataPandatron} dataCulturedBrain={dataCulturedBrain}/>
       </div>
 
       
@@ -122,6 +122,7 @@ export async function getServerSideProps(context) {
       notFound: true,
     }
   }
+  {/*
   const response = await fetch('https://www.fibofy.com/panda-sharedchannels/fetch-channel-users?channel=shared-brainly-2&bypass=cc4d9d62ad12bb29cce8663cffdaf6e9026961cc81b8dfcf10d4683087403180', {
     method: 'GET',
     headers: {
@@ -134,6 +135,7 @@ export async function getServerSideProps(context) {
       notFound: true,
     }
   }
+  */}
   const response2 = await fetch('https://www.fibofy.com/panda-sharedchannels/fetch-channel-users?channel=pandacoachbot&bypass=cc4d9d62ad12bb29cce8663cffdaf6e9026961cc81b8dfcf10d4683087403180', {
     method: 'GET',
     headers: {
@@ -146,7 +148,7 @@ export async function getServerSideProps(context) {
       notFound: true,
     }
   }
-  const response3 = await fetch('  https://www.fibofy.com/msteams-fibo/fetch-channel-users?channel=teams-bot&bypass=cc4d9d62ad12bb29cce8663cffdaf6e9026961cc81b8dfcf10d4683087403180', {
+  const response3 = await fetch('https://www.fibofy.com/msteams-fibo/fetch-channel-users?channel=teams-bot&bypass=cc4d9d62ad12bb29cce8663cffdaf6e9026961cc81b8dfcf10d4683087403180', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -177,7 +179,7 @@ export async function getServerSideProps(context) {
   
   return {
     props: {
-      data,data2,data3,data4,data5,dataShared,dataPandatron,dataMicrosoft,dataCulturedBrain
+      data,data2,data3,data4,data5,dataPandatron,dataMicrosoft,dataCulturedBrain
     }, // will be passed to the page component as props
   }
 }
