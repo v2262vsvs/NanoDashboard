@@ -6,29 +6,18 @@ import BrainlyList from '../components/BrainlyList'
 import MicrosoftList from '../components/MicrosoftList'
 import PandatronList from '../components/PandatronList'
 import CulturedBrainList from '../components/CulturedBrainList'
-function FetchMenu({dataMicrosoft,dataPandatron,dataCulturedBrain}) {
+function FetchMenu({dataMicrosoft,dataPandatron,dataCulturedBrain,dataBrainly}) {
     const[show,setShow]= useState(false)
     const[show2,setShow2]= useState(false)
     const[show3,setShow3]= useState(false)
     const[show4,setShow4]= useState(false)
 
-    const clickBrainly = async(e) => {
-        e.preventDefault()
-        setShow(true)
-        dataShared = await fetchBrainly()    
-    }
-    const getDataFetch = (e) => {
-      e.preventDefault()
-      const data = null;
-      (async ()=>{
-        data = await fetchBrainly()
-        console.log(data)
-    })();
-    }
+    
+    
 
   return (
     <div className='space-y-3 ml-3'>
-       {/*  {show==false
+         {show==false
                 ?
                 <button onClick={()=>setShow(true)} className=' cursor-pointer flex place-self-center bg-gray-300 rounded-md px-2 py-1 hover:scale-105 hover:bg-gray-400 '>
                     <div>Show All Brainly users data</div>
@@ -44,7 +33,7 @@ function FetchMenu({dataMicrosoft,dataPandatron,dataCulturedBrain}) {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
                     </svg>
                 </button>
-                <div className='space-y-2 '>{dataShared.data.map(user =>
+                <div className='space-y-2 '>{dataBrainly.data.map(user =>
                 (
                     <div key={user.id}>
                         <BrainlyList
@@ -52,14 +41,14 @@ function FetchMenu({dataMicrosoft,dataPandatron,dataCulturedBrain}) {
                             first_name={user.first_name}
                             last_name={user.last_name}
                             real_name={user.real_name}
-                            is_stranger={user.is_stranger}
                             team_id={user.team_id}
+                            email={user.email}
                         />
                     </div>
                 ))}</div>
                 </>
             }
-             */}
+             
 
             {show2==false
                 ?

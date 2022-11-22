@@ -13,7 +13,7 @@ import datamicrosoft from "../usersData/Microsoft"
 import datapandatron from "../usersData/Pandatron"
 
 
-export default function Home({ data,data2,data3,data4,data5,alldata,dataShared,dataPandatron,dataMicrosoft,dataCulturedBrain}) {
+export default function Home({ data,data2,data3,data4,data5,dataBrainly,dataPandatron,dataMicrosoft,dataCulturedBrain}) {
   //const dataShared = datashared
   //const dataMicrosoft = datamicrosoft
   //const dataPandatron = datapandatron
@@ -31,8 +31,8 @@ export default function Home({ data,data2,data3,data4,data5,alldata,dataShared,d
         <div className='font-bold'>Notes</div>
         <div> Morning session ID: 6200d57014d1b95a4c82dc68</div>
         <div> Evening session ID: 61b65debfe32175adb317233</div>
-        <div>Format time data =  17:00 =  Evening hours = 17, Evening minutes = 0 (NOT 00)</div>
-        <div > Team_id: FILL IN if it is <span className='font-bold text-xl'>Shared Brainly user or Cultured Brainly</span></div>
+        <div>Format time data. For example,  17:00 will be added as Evening hours: 17, Evening minutes: 0, (NOT 00)</div>
+        <div > Team_id: FILL IN for <span className='font-bold text-xl'>Brainly, Cultured Brainly</span></div>
 
       </div>
       {/*  Banner */}
@@ -44,12 +44,7 @@ export default function Home({ data,data2,data3,data4,data5,alldata,dataShared,d
       <Friday data5={data5}/>
       </main>
       <div className='border-t-2 py-2'>
-              {/*   
-               <FetchMenu dataMicrosoft={dataMicrosoft} dataShared={dataShared} dataPandatron={dataPandatron}/>
-      </div>
-              */}
-
-      <FetchMenu dataMicrosoft={dataMicrosoft}  dataPandatron={dataPandatron} dataCulturedBrain={dataCulturedBrain}/>
+      <FetchMenu dataMicrosoft={dataMicrosoft}  dataPandatron={dataPandatron} dataCulturedBrain={dataCulturedBrain} dataBrainly={dataBrainly}/>
       </div>
 
       
@@ -167,7 +162,20 @@ export async function getServerSideProps(context) {
     },
   })
   const dataCulturedBrain = await response4.json()
-  if (!dataMicrosoft) {
+  if (!dataCulturedBrain) {
+    return {
+      notFound: true,
+    }
+  }
+
+  const response5 = await fetch('https://www.fibofy.com/panda-sharedchannels/fetch-channel-users?channel=brainly&bypass=cc4d9d62ad12bb29cce8663cffdaf6e9026961cc81b8dfcf10d4683087403180', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+  const dataBrainly = await response5.json()
+  if (!dataBrainly) {
     return {
       notFound: true,
     }
@@ -179,7 +187,7 @@ export async function getServerSideProps(context) {
   
   return {
     props: {
-      data,data2,data3,data4,data5,dataPandatron,dataMicrosoft,dataCulturedBrain
+      data,data2,data3,data4,data5,dataPandatron,dataMicrosoft,dataCulturedBrain,dataBrainly
     }, // will be passed to the page component as props
   }
 }
